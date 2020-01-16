@@ -22,8 +22,8 @@ export default function List(navigation) {
   }, [])
 
   useEffect(() => {
-    AsyncStorage.getItem('techs').then(storageTechs => {
-      const techsArray = storageTechs.split(',').map(tech => tech.trim())
+    AsyncStorage.getItem('techs').then(storagedTechs => {
+      const techsArray = storagedTechs.split(',').map(tech => tech.trim())
 
       setTechs(techsArray)
     })
@@ -43,7 +43,9 @@ export default function List(navigation) {
       </TouchableOpacity>
 
       <ScrollView>
-      {techs.map(tech => <SpotList key={tech} tech={tech} />)}
+      {techs.map(tech => (
+        <SpotList key={tech} tech={tech} />
+      ))}
       </ScrollView>
     </SafeAreaView>
   )
